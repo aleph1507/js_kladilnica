@@ -2,6 +2,10 @@
 
 return [
 
+
+    //token
+    'token' => env('FOOTBALL_DATA_TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

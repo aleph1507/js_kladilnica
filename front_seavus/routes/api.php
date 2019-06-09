@@ -19,3 +19,10 @@ use Illuminate\Http\Request;
 
 
 Route::get('/competitions', 'FootAPIController@getCompetitions')->name('competitions.get');
+Route::get('/competitions/{competition}', 'FootAPIController@getCompetition')->name('competition.get');
+Route::get('/competitions/{competition}/standings', 'FootAPIController@getCompetitionStandings')->name('competitions.standings.get');
+Route::get('/competitions/{competition}/matches', 'FootAPIController@getMatchesOfCompetition')->name('competitions.matches.get');
+Route::get('/matches', 'FootAPIController@getMatches')->name('matches.get');
+Route::get('/matches/{match}', 'FootAPIController@getMatch')->name('match.get');
+Route::get('/teams', 'FootAPIController@getTeams')->name('teams.get');
+Route::get('/teams/{team}', 'FootAPIController@getTeam')->name('team.get');

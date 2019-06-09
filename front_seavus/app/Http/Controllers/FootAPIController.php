@@ -2,29 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
+use App\Lib\FootAPIServiceProvider;
+use \Illuminate\Http\Request;
 
-class FootAPIController extends Controller
-{
-    private $client;
+class FootAPIController extends Controller {
 
-    public function __construct()
+    private $footApi;
+
+    public function __construct(FootAPIServiceProvider $footApi)
     {
-        $this->client = new Client();
+        $this->footApi = $footApi;
     }
 
-    function getCompetitions()
+
+    function getCompetitions(Request $request)
     {
-
-        $result = $this->client->get('http://api.football-data.org/v2/competitions')->getBody();
-
+        $result = $this->footApi->getCompetitions($request);
         return $result;
     }
 
-    function getAreas()
-    {
+    function getCompetition(Request $request, $competition) {
+        $result = $this->footApi->getCompetition($request, $competition);
+        return $result;
+    }
 
+    function getMatchesOfCompetition(Request $request, $competition) {
+        $result = $this->footApi->getMatchesOfCompetition($request, $competition);
+        return $result;
+    }
+
+    function getCompetitionStandings(Request $request, $competition) {
+        $result = $this->footApi->getCompetitionStandings($request, $competition);
+        return $result;
+    }
+
+    function getMatches(Request $request) {
+        return $this->footApi->getMatches($request);
+    }
+
+    function getMatch(Request $request, $match) {
+        return $this->footApi->getMatch($request, $match);
+    }
+
+    function getTeams(Request $request) {
+        return $this->footApi->getTeams($request);
+    }
+
+    function getTeam(Request $request, $team) {
+        return $this->footApi->getTeam($request, $team);
     }
 }
